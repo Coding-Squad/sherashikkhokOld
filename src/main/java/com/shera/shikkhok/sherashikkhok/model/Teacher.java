@@ -8,9 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "teacher")
@@ -48,8 +50,8 @@ public class Teacher {
 	@NotEmpty(message = "*Please write something about your favourite teacher.")
 	private String aboutTeacher;
 	
-	@Column(name = "teacherImage")
-	private Blob teacherImage;
+	@Transient
+	private MultipartFile userImage;
 
 	public int getTeacherId() {
 		return teacherId;
@@ -115,12 +117,22 @@ public class Teacher {
 		this.aboutTeacher = aboutTeacher;
 	}
 
-	public Blob getTeacherImage() {
-		return teacherImage;
+	public MultipartFile getUserImage() {
+		return userImage;
 	}
 
-	public void setTeacherImage(Blob teacherImage) {
-		this.teacherImage = teacherImage;
+	public void setUserImage(MultipartFile userImage) {
+		this.userImage = userImage;
 	}
-		
+
+	@Override
+	public String toString() {
+		return "Teacher [teacherId=" + teacherId + ", teacherEmail=" + teacherEmail + ", instituteName=" + instituteName
+				+ ", name=" + name + ", mobileNumber=" + mobileNumber + ", nid=" + nid + ", facebookId=" + facebookId
+				+ ", aboutTeacher=" + aboutTeacher + ", userImage=" + userImage + "]";
+	}
+	
+	
+
+			
 }

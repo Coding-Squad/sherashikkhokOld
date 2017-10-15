@@ -1,5 +1,8 @@
 package com.shera.shikkhok.sherashikkhok.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,22 @@ public class TeacherController {
 
 	@Autowired
 	private TeacherService teacherService;
+	
+	@RequestMapping(value="/teachersList", method = RequestMethod.GET)
+	public ModelAndView allTeachersList() {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		List<Teacher> teachersList = teacherService.findAll();
+		
+		if (teachersList!=null) {
+			modelAndView.addObject(teachersList);
+			modelAndView.setViewName("teachersList");
+		}
+		
+		System.out.println("modeland view:.........................."+"         "+modelAndView);
+		return modelAndView;
+	}
+	
 	
 	@RequestMapping(value="/teacherRegistration", method = RequestMethod.GET)
 	public ModelAndView teacherRegistration(){
@@ -40,8 +59,6 @@ public class TeacherController {
 			modelAndView.setViewName("teacherRegistration");
 		} else {
 			teacherService.saveTeacher(teacher);
-			modelAndView.addObject("teacherName", "Welcome"+" "+ teacher.getName()+ " "+ teacher.getInstituteName()+ " "+
-			teacher.getFacebookId()+" "+teacher.getTeacherEmail()+" "+teacher.getAboutTeacher());
 			modelAndView.addObject("successMessage", "Teacher has been added successfully");
 			modelAndView.addObject("teacher", new Teacher());
 			modelAndView.setViewName("teacherRegistration");
@@ -51,3 +68,6 @@ public class TeacherController {
 	}
 	
 }
+/*
+modelAndView.addObject("teacherName", "Welcome"+" "+ teacher.getName()+ " "+ teacher.getInstituteName()+ " "+
+		teacher.getFacebookId()+" "+teacher.getTeacherEmail()+" "+teacher.getAboutTeacher());*/

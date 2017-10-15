@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: site-head">
+<style type="text/css">
+.test-Class {
+	
+}
+</style>
+</head>
+
+<body>
+	<header th:replace="layout :: site-header"></header>
+	<div th:fragment="content">
+
+		<h2>List of all teachers!</h2>
+		<div>
+
+
+			<div class="row">
+				<div class="col-md-4" th:each="teacher : ${teacherList}">
+				
+					<label th:text="${teacher.name}">...</label><br>
+					<label th:text="${teacher.instituteName}">...</label><br>
+					<label th:text="${teacher.aboutTeacher}">...</label><br>
+					
+					<input type="submit" value="Vote" />&nbsp; &nbsp; 
+					<input type="submit" value="Share" /><br><br>
+					
+				</div>
+			</div>
+		</div>
+
+
+
+	</div>
+	<!-- <footer th:replace="layout :: site-footer"></footer> -->
+</body>
+</html>
