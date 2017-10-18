@@ -13,9 +13,9 @@ public interface PostsService {
     
     void insert (Posts post);
     
-    List<Posts> findByCreatorId(User user);
+    List<Posts> findByCreatorId(long userId);
     
-    void create(Posts post);
+	void create(Posts post, User user);
         
     Posts edit(Posts post);
     

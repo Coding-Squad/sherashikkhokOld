@@ -38,8 +38,8 @@ public class TeacherServiceImpl implements TeacherService{
 
 	@Override
 	public List<Teacher> findAll() {
-		// TODO Auto-generated method stub
-		return teacherRepository.findAll();
+		List<Teacher> teachersList = teacherRepository.findAll();		
+		return teachersList;
 	}
 
 }

@@ -14,6 +14,14 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * @author User
+ *
+ */
+/**
+ * @author Pranto
+ *
+ */
 @Entity
 @Table(name = "teacher")
 public class Teacher {
@@ -50,8 +58,29 @@ public class Teacher {
 	@NotEmpty(message = "*Please write something about your favourite teacher.")
 	private String aboutTeacher;
 	
+	@Column(name = "teacher_Image")
+	private Blob mImage;
+	
 	@Transient
-	private MultipartFile userImage;
+	private MultipartFile teacherImage;
+
+	public MultipartFile getTeacherImage() {
+		return teacherImage;
+	}
+
+	public void setTeacherImage(MultipartFile teacherImage) {
+		this.teacherImage = teacherImage;
+	}
+
+	public Blob getmImage() {
+		return mImage;
+	}
+
+	public void setmImage(Blob mImage) {
+		this.mImage = mImage;
+	}
+
+	
 
 	public int getTeacherId() {
 		return teacherId;
@@ -117,19 +146,15 @@ public class Teacher {
 		this.aboutTeacher = aboutTeacher;
 	}
 
-	public MultipartFile getUserImage() {
-		return userImage;
-	}
+	
 
-	public void setUserImage(MultipartFile userImage) {
-		this.userImage = userImage;
-	}
+
 
 	@Override
 	public String toString() {
 		return "Teacher [teacherId=" + teacherId + ", teacherEmail=" + teacherEmail + ", instituteName=" + instituteName
 				+ ", name=" + name + ", mobileNumber=" + mobileNumber + ", nid=" + nid + ", facebookId=" + facebookId
-				+ ", aboutTeacher=" + aboutTeacher + ", userImage=" + userImage + "]";
+				+ ", aboutTeacher=" + aboutTeacher + ", mImage=" + mImage + ", teacherImage=" + teacherImage + "]";
 	}
 	
 	

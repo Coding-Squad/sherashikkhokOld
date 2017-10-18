@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.shera.shikkhok.sherashikkhok.model.User;
 
 @Repository("userRepository")
-public interface UserRepository extends JpaRepository<User, Long>{
-	
+public interface UserRepository extends JpaRepository<User, Long> {
+
 	User findByEmail(String email);
 
 }

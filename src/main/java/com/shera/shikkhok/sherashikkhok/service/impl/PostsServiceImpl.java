@@ -9,19 +9,14 @@ import org.springframework.stereotype.Service;
 import com.shera.shikkhok.sherashikkhok.model.Posts;
 import com.shera.shikkhok.sherashikkhok.model.User;
 import com.shera.shikkhok.sherashikkhok.repository.PostsRepository;
-import com.shera.shikkhok.sherashikkhok.repository.UserRepository;
 import com.shera.shikkhok.sherashikkhok.service.PostsService;
-
 
 @Service("postsService")
 @Primary
-public class PostsServiceImpl implements PostsService{
-	
-	 @Autowired
-	 private PostsRepository postRepository;
-	 
-	 @Autowired
-	 private UserRepository userRepo;
+public class PostsServiceImpl implements PostsService {
+
+	@Autowired
+	private PostsRepository postRepository;
 
 	@Override
 	public List<Posts> getAllPosts() {
@@ -39,11 +34,6 @@ public class PostsServiceImpl implements PostsService{
 	}
 
 	@Override
-	public void create(Posts post) {
-		postRepository.save(post);
-	}
-
-	@Override
 	public Posts edit(Posts post) {
 		// TODO Auto-generated method stub
 		return null;
@@ -57,14 +47,22 @@ public class PostsServiceImpl implements PostsService{
 			return false;
 		postRepository.delete(id);
 		return true;
-		
+
 	}
 
 	@Override
-	public List<Posts> findByCreatorId(User user) {
-		return postRepository.findByAuthorId(user.getId());
+	public void create(Posts post, User user) {
+
+		post.setUserId(user.getId());
+		post.setEmail(user.getEmail());
+		postRepository.save(post);
+
 	}
 
-	
+	@Override
+	public List<Posts> findByCreatorId(long userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

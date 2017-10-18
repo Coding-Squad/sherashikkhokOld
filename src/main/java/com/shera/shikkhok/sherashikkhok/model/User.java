@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -63,6 +64,9 @@ public class User {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
+	
+	/*@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Posts> posts;*/
 	
 	/*@Autowired
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
@@ -149,6 +153,21 @@ public class User {
 		this.facebookId = facebookId;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", email=" + email + ", instituteName=" + instituteName + ", password=" + password
+				+ ", name=" + name + ", lastName=" + lastName + ", mobileNumber=" + mobileNumber + ", facebookId="
+				+ facebookId + ", active=" + active + ", roles=" + roles + "]";
+	}
+
+	/*public Set<Posts> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(Set<Posts> posts) {
+		this.posts = posts;
+	}
+*/
 	/*public Set<Posts> getPosts() {
 		return posts;
 	}
@@ -156,6 +175,8 @@ public class User {
 	public void setPosts(Set<Posts> posts) {
 		this.posts = posts;
 	}*/
+	
+	
 	
 		
 }
